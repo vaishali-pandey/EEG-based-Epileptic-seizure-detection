@@ -1,0 +1,337 @@
+---
+title: "Graphs for project"
+author: "vaishali"
+date: "2023-11-21"
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
+---
+```{r}
+library(ggplot2)
+
+# Function to calculate singular values
+svd_d <- function(data) {
+  d_vec <- c()
+  for (i in 1:nrow(data)) {
+    a <- svd(data[i,])
+    v <- a$d
+    d_vec <- append(d_vec, v)
+  }
+  return(d_vec)
+}
+
+# Data for the first plot
+data124e <- Data_P_404_E_1_
+data124e <- subset(data124e, select = -c(Unnamed, y))
+p124 <- svd_d(data124e)
+f_svd124 <- svd(data124e)
+norm124 <- norm(f_svd124$d, type = "2")
+base124 <- norm124 / length(f_svd124$d)
+
+# Data for the second plot
+data125e <- Data_P_131_NE
+data125e <- subset(data125e, select = -c(Unnamed, y))
+p125 <- svd_d(data125e)
+f_svd125 <- svd(data125e)
+norm125 <- norm(f_svd125$d, type = "2")
+base125 <- norm125 / length(f_svd125$d)
+
+# Create a combined data frame for both plots
+combined_data <- data.frame(
+  Time = rep(1:length(p124), 2),
+  Singular_Values = c(p124, p125),
+  Dataset = rep(c("Epilepsy", "Non-epilepsy"), each = length(p124))
+)
+
+# Plot
+p <- ggplot(combined_data, aes(x = Time, y = Singular_Values, color = Dataset)) +
+  geom_line(size = 0.6) +
+  geom_point(size = 2) +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(c(p124, p125)) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Superimposed Singular Value Plot") +
+  theme_bw()
+
+print(p)
+
+
+```
+
+For patient 404 E
+```{r}
+data124e=Data_P_404_E_1_
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "red") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "red", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+For patient 124 E
+```{r}
+data124e=Data_P_124_E
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "red") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "red", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+
+For patient 216 E
+```{r}
+data124e=Data_P_216_E
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "red") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "red", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+For patient 994 E
+```{r}
+data124e=Data_p_994_E
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "red") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "red", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+##Non Epilepsy
+For patient 131 NE
+```{r}
+data124e=Data_P_131_NE
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "green") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "green", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+
+For patient 351 NE
+```{r}
+data124e=Data_P_351_NE
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "green") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "green", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+For patient 501 NE
+```{r}
+data124e=Data_P_501_NE
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "green") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "green", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+For patient 891 NE
+```{r}
+data124e=Data_P_891_NE
+data124e=subset(data124e,select=-c(Unnamed,y))
+data124e
+
+d_vec=c()
+svd_d=function(data124e){
+  for (i in 1:nrow(data124e)){
+    a=svd(data124e[i,])
+    v=a$d
+    d_vec=append(d_vec,v)
+  }
+  return( d_vec )
+}
+p124=svd_d(data124e)
+p124
+
+f_svd=svd(data124e)
+norm124=norm(f_svd$d,type="2")
+base124=norm124/length(f_svd$d)
+base124
+
+#plot
+library(ggplot2)
+p <- ggplot() +
+  geom_line(aes(x = 1:length(p124), y = p124), color = "green") +
+  geom_point(aes(x = 1:length(p124), y = p124), color = "green", size = 2) + # Add points +
+  xlim(0, 24) +
+  ylim(base124 - 500, max(p124) + 1000) +
+  labs(x = "Time", y = "Singular values", title = "Singular value plot") +
+  theme_bw()
+print(p)
+```
+
